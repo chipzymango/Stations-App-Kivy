@@ -1,0 +1,131 @@
+#:kivy 2.2.1
+
+ScreensManager:
+    FirstScreen:
+    SecondScreen:
+
+<FirstScreen>:
+    name: "first"
+    searchTextInput: searchTextInput
+
+    GridLayout:
+        id: mainGridLayout
+        size: root.width, root.height
+        rows: 4
+        canvas.before:
+            Color:
+                rgba: .8, .8, .8, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Reis"
+            font_size: 25
+            size_hint_y: None
+            height: 50
+
+        GridLayout:
+            id: searchGridLayout
+            canvas.before:
+                Color:
+                    rgba: 1, .5, .5, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            size: root.width, root.height
+            cols: 2
+            rows: 1
+            size_hint_y: 0.1
+
+            TextInput:
+                id: searchTextInput
+                hint_text: "Find station"
+                size_hint_y: None
+                height: 50
+                multiline: False
+
+            Button:
+                text: "Søk"
+                size_hint_x: None
+                size_hint_y: None
+                width: 50
+                height: 50
+                on_press:
+                    root.addButton()
+                
+        GridLayout:
+            id: resultsGridLayout
+            canvas.before:
+                Color:
+                    rgba: .5, 1, .5, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            rows: 10
+            cols: 1
+            Button:
+                text: "test"
+            Button:
+                text: "test 2"
+
+        GridLayout:
+            id: navigationGridLayout
+            canvas.before:
+                Color:
+                    rgba: .5, .5, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            rows: 1
+            cols: 2
+            size_hint_y: 0.1
+            Button:
+                text: "Home"
+                size_hint_y: None
+                height: 50     
+            Button:
+                text: "Favourites"
+                size_hint_y: None
+                height: 50
+                on_press:
+                    app.root.current = "second"  
+                    
+<SecondScreen>:
+    name: "second"
+
+    GridLayout:
+        size: root.width, root.height
+        rows: 4
+        Label:
+            text: "Label 2"
+        GridLayout:
+            size: root.width, root.height
+            cols: 1
+            rows: 5
+
+            Button:
+                text: "60, Tonsenhagen"
+            Button:
+                text: "60, Tonsenhagen"                
+            Button:
+                text: "60, Tonsenhagen"
+            Button:
+                text: "60, Tonsenhagen"
+            Button:
+                text: "60, Tonsenhagen"                                                
+        
+        GridLayout:
+            rows: 1
+            cols: 2
+            Button:
+                text: "home"
+                on_press:
+                    app.root.current = "first"
+            Button:
+                text: "back"
+    
+<AppGridLayout>
+    # pythonvariable:kivyvariable
+
+    
