@@ -6,7 +6,7 @@ from kivy.properties import ObjectProperty
 
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
-from departures import searchForStopPlace
+from stopplaces import searchForStopPlace
 
 class FirstScreen(Screen):
     searchTextInput = ObjectProperty(None)
@@ -14,6 +14,15 @@ class FirstScreen(Screen):
         searchTextInput = str(self.searchTextInput.text)
         newButton = Button(text=searchTextInput)
         self.ids.resultsGridLayout.add_widget(newButton)
+
+    def findStopPlace(self):
+        search = str(self.searchTextInput.text)
+        stopPlaceResults = searchForStopPlace(str(search))
+
+        for stopPlace in stopPlaceResults:
+            buttonText = stopPlace["stopPlaceName"] + ", " + stopPlace["stopPlaceLocation"]
+            stopPlaceButton = Button(text=buttonText)
+            self.ids.resultsGridLayout.add_widget(stopPlaceButton)
 
 class SecondScreen(Screen):
     pass
